@@ -3,6 +3,9 @@
 <h1 style="margin-top:-15px;">Parcl v2 Educational Examples</h1>
 </div>
 
+[![Twitter Follow](https://img.shields.io/twitter/follow/Parcl?color=pink&label=Twitter&logo=twitter&logoColor=white&style=plastic)](https://twitter.com/@Parcl)
+[![Discord](https://img.shields.io/discord/909844637701795890?color=pink&label=discord&logo=discord&logoColor=white)](https://discord.com/invite/parcl)
+
 # Quick Start
 
 This repo is an **educational resource** to learn about how to write software that interacts with Parcl v2 smart contracts.
@@ -11,7 +14,7 @@ Examples are organized by programming language and type. For example, bots are p
 
 # DISCLAIMER
 
-- **This software is for education purposes only**
+- **This software is for educational purposes only**
 - **This software is not financial advice**
 - **See warning below**
 - **Use at your own risk**

@@ -7,23 +7,35 @@
 
 This bot tracks changes to a pool so it can put on minority-side trades that collect accrued funding from the majority. The bot helps push markets toward 50/50 skew. This bot takes on price risk.
 
-- Use a wallet exclusively for this bot that does not have any open positions.
-- Check the [docs](https://docs.parcl.co/smart-contracts-+-accounts#pools) for pool addresses.
+### Configuration
 
-## Make it better
+#### Set Environment Variables
 
-- This bot is far from production ready. What would make it better?
-- Price risk?
+- Set a Solana cluster.
+- Set a wallet for the bot.
+  - Use a wallet exclusively for this bot that does not have any open positions.
+  - Use base58 encoded private key as an environment variable.
+  - If PRIVATE_KEY is not found in the environment variables, then the bot defaults to the machine's Solana CLI default keypair.
+- Set the pool address.
+  - Check the [docs](https://docs.parcl.co/smart-contracts-+-accounts#pools) for pool addresses.
+- Set an RPC url to connect to Solana.
+  - If you need a url, check out this list of public and private providers [here](https://solana.com/rpc).
 
-## Run Bot
+### Start Bot
 
 ```sh
 yarn start
 ```
 
+# Make it better
+
+- This bot is far from production ready. What would make it better?
+- Price risk protection?
+- Are the hooks dynamic enough?
+
 # DISCLAIMER
 
-- **This software is for education purposes only**
+- **This software is for educational purposes only**
 - **This software is not financial advice**
 - **See warning below**
 - **Use at your own risk**

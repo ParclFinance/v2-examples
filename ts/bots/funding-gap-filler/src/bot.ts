@@ -1,6 +1,7 @@
 import { BN, Address, translateAddress, ProgramAccount } from "@project-serum/anchor";
 import { PublicKey, sendAndConfirmTransaction } from "@solana/web3.js";
 import Decimal from "decimal.js";
+import chalk from "chalk";
 import { ParclV2Client } from "./client";
 import { Pool, Position, OpenPositionAmounts, SkewInfo } from "./types";
 import { getPositionPda, getUnsettledCollateralAccountPda } from "./utils";
@@ -77,7 +78,7 @@ export class Bot {
   }
 
   async tryExecuteTrade(): Promise<void> {
-    console.log(`${new Date()}: Trying to execute trade...`);
+    console.log(chalk.blue(`${new Date()}: Trying to execute trade...`));
     const currentPosition = (await this.client.program.account.position.fetchNullable(
       this.currentPosition
     )) as Position;
@@ -88,15 +89,17 @@ export class Bot {
     if (maxTradeSize.lte(SMALLEST_COLLATERAL_AMOUNT)) return;
     // Get unleveraged collateral amount and unsettled collateral amount to use for the open position instruction
     const { amount, unsettledAmount } = await this.getOpenPositionAmounts(maxTradeSize);
-    console.log(`${new Date()}:`);
-    console.log({
-      currentSkew: skew.div(1e6),
-      maxTradeSize: maxTradeSize.divn(1e6).toString(),
-      leverage: LEVERAGE,
-      amount: amount.divn(1e6).toString(),
-      unsettledAmount: unsettledAmount.divn(1e6).toString(),
-      direction: !skew.isPositive() ? "Long" : "Short",
-    });
+    console.log(chalk.blue(`${new Date()}:`));
+    console.log(
+      chalk.blue({
+        currentSkew: skew.div(1e6),
+        maxTradeSize: maxTradeSize.divn(1e6).toString(),
+        leverage: LEVERAGE,
+        amount: amount.divn(1e6).toString(),
+        unsettledAmount: unsettledAmount.divn(1e6).toString(),
+        direction: !skew.isPositive() ? "Long" : "Short",
+      })
+    );
     // Get transaction that:
     //  1. Closes current position
     //  2. Opens a new position to fill the funding gap
@@ -116,12 +119,12 @@ export class Bot {
     const signature = await sendAndConfirmTransaction(this.client.program.provider.connection, tx, [
       this.client.wallet.payer,
     ]);
-    console.log(`${new Date()}: Execute Trade Signature: ${signature}`);
+    console.log(chalk.blue(`${new Date()}: Execute Trade Signature: ${signature}`));
     this.currentPosition = newPosition;
   }
 
   async sendOpenPositionTx(skew: Decimal): Promise<void> {
-    console.log(`${new Date()}: Trying to open a position...`);
+    console.log(chalk.blue(`${new Date()}: Trying to open a position...`));
     const maxTradeSize = new BN(
       skew.abs().mul(TRADE_SIZE_PERCENT_OF_MAX_SIZE).div(LEVERAGE).floor().toString()
     );
@@ -144,7 +147,7 @@ export class Bot {
     const signature = await sendAndConfirmTransaction(this.client.program.provider.connection, tx, [
       this.client.wallet.payer,
     ]);
-    console.log(`${new Date()}: Open Position Signature: ${signature}`);
+    console.log(chalk.blue(`${new Date()}: Open Position Signature: ${signature}`));
   }
 
   getMaxTradeSizeAndSimulatedSkew(currentPosition: Position): { skew: Decimal; maxTradeSize: BN } {
