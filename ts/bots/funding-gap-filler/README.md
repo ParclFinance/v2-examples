@@ -21,7 +21,13 @@ This bot tracks changes to a pool so it can put on minority-side trades that col
 - Set an RPC url to connect to Solana.
   - If you need a url, check out this list of public and private providers [here](https://solana.com/rpc).
 
-### Start Bot
+#### Install Dependencies
+
+```sh
+yarn install
+```
+
+#### Start Bot
 
 ```sh
 yarn start
