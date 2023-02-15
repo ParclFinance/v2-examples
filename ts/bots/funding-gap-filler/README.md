@@ -1,6 +1,6 @@
 <div align="center">
 <img height="180" src="https://avatars.githubusercontent.com/u/84755822?s=200&v=4"/>
-<h1 style="margin-top:-15px;">Parcl v2 </h1>
+<h1 style="margin-top:-15px;">Funding Gap Filler</h1>
 </div>
 
 # Quick Start
