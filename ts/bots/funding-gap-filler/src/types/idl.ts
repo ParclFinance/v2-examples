@@ -1,5 +1,5 @@
 export type ParclV2Core = {
-  version: "0.0.2";
+  version: "0.0.3";
   name: "parcl_v2_core";
   constants: [
     {
@@ -123,7 +123,7 @@ export type ParclV2Core = {
     {
       name: "MAX_ANNUAL_FUNDING_RATE";
       type: "i128";
-      value: "100_000";
+      value: "25_00";
     },
     {
       name: "FUNDING_RATE_PRECISION";
@@ -1872,7 +1872,7 @@ export type ParclV2Core = {
 };
 
 export const IDL: ParclV2Core = {
-  version: "0.0.2",
+  version: "0.0.3",
   name: "parcl_v2_core",
   constants: [
     {
@@ -1996,7 +1996,7 @@ export const IDL: ParclV2Core = {
     {
       name: "MAX_ANNUAL_FUNDING_RATE",
       type: "i128",
-      value: "100_000",
+      value: "25_00",
     },
     {
       name: "FUNDING_RATE_PRECISION",
